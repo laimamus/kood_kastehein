@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arvu äraarvamine</title>
+</head>
+<body>
+    <h1> Arvu äraarvamine</h1>
+
+    <script>
+       function genereeriSuvalineNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        } 
+
+        function mängiNumbriÄraarvamisMängu() {
+            const minNumber = 1;
+            const maxNumber = 100;
+
+            const targetNumber = genereeriSuvalineNumber(minNumber, maxNumber);
+            let attempts = 0;
+
+            while (true) {
+                const userGuess = parseInt(prompt("Arva ära number vahemikus 0 ja 100:"));
+                attempts++;
+
+                if (userGuess === targetNumber) {
+                    alert("Palju õnne! Sa arvasid õige numbri ära.");
+                    break;
+                } else if (userGuess < targetNumber) {
+                    alert("Liiga väike! Proovi uuesti!");
+                } else {
+                    alert("Liiga suur! Proovi uuesti!");
+                }
+            }
+        }
+
+        mängiNumbriÄraarvamisMängu();
+    </script>
+
+</body>
+</html>
