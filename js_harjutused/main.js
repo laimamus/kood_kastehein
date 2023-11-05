@@ -1,35 +1,18 @@
 // Harjutus 1//
-function greetUser() {
-    const name = prompt("Palun sisesta oma nimi:");
-    if (name) {
-      console.log(`Tere, ${name}! `);
+function harjutus1(nimi) {
+      console.log('Tere, ${nimi}! ');
     } 
-  }
-  greetUser();
 
  //Harjutus 2//
- function describeCar(){
-    let mark = `Ford`
-    let mudel = `Mustang`
-    let värv = `punane`
-
-    console.log(`Minu auto on ${värv} ${mark} ${mudel}.`);
+ function harjutus2(mark, mudel, värv){
+    console.log('Minu auto on ${värv} ${mark} ${mudel}.');
   }
-describeCar();
 
 //Harjutus 3//
-function arvutaPüramiidiRuumala(){
-    const PõhjaPindala = parseFloat(prompt("Palun sisesta püramiidi põhjapindala:"));
-    const kõrgus = parseFloat(prompt("Palun sisesta püramiidi kõrgus:"));
-    
-    if (!isNaN(PõhjaPindala) && !isNaN(kõrgus)) {
-        const Ruumala = (1/3)*PõhjaPindala*kõrgus
-    console.log(`Püramiidi pindala põhjapindalaga ${PõhjaPindala} ruutmeetrit ja kõrgusega ${kõrgus} meetrit on ${Ruumala} kuupmeetrit`)
+function harjutus3(pindala, kõrgus){
+    const ruumala = (1/3)*PõhjaPindala*kõrgus
+    console.log("Püramiidi pindala on" + ruumala);
 }
-    }
-    
-arvutaPüramiidiRuumala();
-
 
 //Harjutus 4//
 function luhendaNimi(nimi) {
@@ -38,88 +21,71 @@ function luhendaNimi(nimi) {
       nimi = nimi.slice(0, 5) + "...";
     }
   
-    console.log(nimi);
-  }1
-  const kasutajaNimi = prompt("Sisesta nimi:");
-  luhendaNimi(kasutajaNimi);
-
-
+    console.log('Nimi on ${nimi}');
+  }
 
 //Harjutus 5//
-function pooraString(sisend) {
-  
-  const tähemärgid = sisend.split('');
-  const pööratudTähemärgid = tähemärgid.reverse();
-  const pööratudString = pööratudTähemärgid.join('');
-
-  console.log(pööratudString);
+function harjutus5(nimi) {
+  let pööratudNimi = nimi.split('').reverse().join('');
+  console.log("Pööratud string on" + pööratudNimi);
 }
-
-const kasutajaSisend = prompt("Sisesta string:");
-pooraString(kasutajaSisend);
-
   
 //Harjutus 6//
-function prindiNumbreid() {
+function harjutus6() {
     for (let i = 1; i <= 100; i++) {
         console.log(i);
     }
 }
-prindiNumbreid();
 
 //Harjutus 7//
-function prindiTäisarvud100st1ni() {
-    let arv = 100;
+function harjutus7() {
+    let i = 100;
   
-    while (arv >= 1) {
-      console.log(arv);
-      arv--;
+    while (i >= 1) {
+      console.log(i);
+      i--;
     }
   }
   
-  prindiTäisarvud100st1ni();
-  
-//Harjutus 10//
-const myNameComponents = ['Samuel', 'L', 'Jackson'];
 
-function prindiNimiLause() {
-  const fullName = myNameComponents.join(' ');
-  console.log(`Minu nimi on ${fullName}.`);
+//Harjutus 10//
+function harjutus10() {
+  const myNameComponents = ['Samuel', 'L', 'Jackson'];
+  const nimi = myNameComponents.join(' ');
+  console.log(`Minu nimi on ${nimi}.`);
 }
 
-prindiNimiLause();
 
 //Harjutus 11//
-function arvutaKeskmineHinne(hinded) {
+function harjutus11(hinded) {
     let summa = 0;
   
-    for (let i = 0; i < hinded.length; i++) {
-      summa += hinded[i];
+    for (hinne of hinded) {
+      summa += hinne; //summa = summa + hinne//
     }
-  
-    const keskmine = summa / hinded.length;
-    console.log(`Õpilase keskmine hinne on ${keskmine}.`);
+    let keskmineHinne = summa / hinded.length;
+    console.log(`Õpilase keskmine hinne on ${keskmineHinne}.`);
   }
   
-  const hinded = [3, 5, 4, 3, 4, 5, 3, 4, 2];
-  arvutaKeskmineHinne(hinded);
-  
-
 //Harjutus 12//
-function loeNumbreid () {
+function harjutus12 () {
     for(let i = 1; i <= 100; i++) {
-        let output = ``;
+        let output = "";
 
-        if (i % 3 === 0) {
+        if ((i % 3 === 0) && (i % 5 === 0)) {
+            output += 'Lütseum';
+          }
+
+          else if (i === 50) {
+            output = `Tallinna Prantsuse Lütseum`
+        }
+
+        else if (i % 3 === 0) {
             output += `Tallinna`;
         }
-
-        if (i % 5 === 0) {
+// % ehk jääk//
+        else if (i % 5 === 0) {
             output += `Prantsuse`;
-        }
-
-        if (i === 50) {
-            output = `Tallinna Prantsuse Lütseum`
         }
 
         console.log(output);
@@ -127,11 +93,11 @@ function loeNumbreid () {
     }
 
 }
-loeNumbreid ();
+
 
 //Harjutus 13//
 
-function checkForMarek() {
+function harjutus13() {
     
     const input = prompt("Sisetage komadega eraldatud nimed:");
     const namesArray = input.split(",");
@@ -144,7 +110,6 @@ function checkForMarek() {
     }
   }
   
-  checkForMarek();
 
   // Harjutus 14//
 
@@ -172,7 +137,7 @@ function checkForMarek() {
     }
 ];
 
-function findPersonInfo(inimesed) {
+function harjutus14(inimesed) {
   let vanemInimene = null;
   let pikemAddress = null;
   let lühemTelefoniNumber = null;
@@ -202,4 +167,4 @@ function findPersonInfo(inimesed) {
   console.log("Inimese nimi, kelle e-posti addressis sisaldub sõna aaeesti :", eestiEmail.nimi);
 }
 
-findPersonInfo(inimesed);
+
