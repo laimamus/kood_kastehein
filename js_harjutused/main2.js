@@ -17,7 +17,7 @@ suurim();
 
 //Harjutus 16//
 function celsiusToFahrenheit() {
-    const C = parseFloat(prompt("Sisestra tempertauur celsiues: "));
+    const C = parseFloat(prompt("Sisestra tempertauur celsiuses: "));
     if(!isNaN(C)) {
         const fahrenheit = (C * 9/5) + 32;
         console.log(`${C} °C on ${fahrenheit} °F.`);
