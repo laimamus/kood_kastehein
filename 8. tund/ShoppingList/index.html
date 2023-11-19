@@ -14,22 +14,17 @@
     </ul>
 
     <script>
-        document.getElementById('addItem').addEventListener('click', function() {
-        let newItem = document.getElementById('item').value;
-        
-        if (newItem.trim() !== '') {
-          let shoppingList = document.getElementById('shopping-list');
+          const itemInput = document.getElementById('item');
 
-          let listItem = document.createElement('li');
-          listItem.textContent = newItem;
+          const addItemButton = document.getElementById('addItem');
 
-          shoppingList.appendChild(listItem);
+          const shoppingList = document.getElementById('shopping-list');
 
-          document.getElementById('item').value = '';
-        }
-       })
- 
-        
+          addItemButton.addEventListener('click', function (){
+            const newItem = document.createElement('li');
+            newItem.textContent = itemInput.value;
+            shoppingList.appendChild(newItem);
+          })
     </script>
 </body>
 </html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Trail</title>
+    <style>
+        .trail {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #66cdaa;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+      const trailElements = [];
+
+      function createTrailElement() {
+        const trailElement = document.createElement("div");
+        trailElement.className = "trail";
+        document.body.appendChild(trailElement);
+        return trailElement;
+      }
+
+      function removeTrailElement(trailElement) {
+        document.body.removeChild(trailElement);
+        trailElements.shift(); 
+      }
+
+      function updateTrailPositions(event) {
+        const trailLength = 10;
+        const trailDuration = 3000; //3000 ms ehk 3 s
+
+        while (trailElements.length >= trailLength) {
+          const elementToRemove = trailElements.shift();
+          removeTrailElement(elementToRemove);
+        }
+
+        const trailElement = createTrailElement();
+        trailElement.style.left = `${event.pageX}px`;
+        trailElement.style.top = `${event.pageY}px`;
+
+        trailElements.push(trailElement);
+
+        setTimeout(() => {
+          removeTrailElement(trailElement);
+        }, trailDuration);
+      }
+
+      document.addEventListener("mousemove", updateTrailPositions);
+    });
+    </script>
+</body>
+</html>
