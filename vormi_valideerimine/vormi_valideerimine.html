@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Registreerimisvorm </title>
+</head>
+<body>
+    <form id="form">
+        <input type="text" id="kasutajanimi" placeholder="Kasutajanimi" required><br>
+        <input type="email" id="email" placeholder="Email" pattern="[^\s@]+@[^\s@]+\.[^\s@]+" required><br>
+        <input type="password" id="parool" placeholder="Parool" required><br>
+        <input type="password" id="kinnitaParool" placeholder="Kinnita parool" required><br>
+        <button type="button" onclick="validateKasutajanimi(), validateEmail(), validateParool(), validateKinnitaParool()">Submit</button>
+    </form>
+    
+    <script>
+        function validateKasutajanimi() {
+    const kasutajanimi = document.getElementById('kasutajanimi').value;
+    const minLength = 5;
+
+    if (kasutajanimi.length < minLength) {
+        alert('Kasutajanimi peab olema vähemalt 5 tähemärki pikk.');
+    } else {
+        console.log('Kasutajanimi on piisavalt pikk.');
+    }
+}
+
+function validateParool() {
+    const parool = document.getElementById('parool').value;
+    const minLength = 8;
+
+    if (parool.length < minLength) {
+        alert('Parool peab olema vähemalt 8 tähemärki pikk.');
+    } else {
+        console.log('Parool on piisavalt pikk.');
+    }
+}
+
+function validateKinnitaParool() {
+    const kinnitaParool = document.getElementById('kinnitaParool').value;
+    const parool = document.getElementById('parool').value;
+
+    if (kinnitaParool != parool) {
+        alert('Parool peab olema sama, mis enne sisestatud.');
+    } else {
+        console.log('Parool on õige.');
+    }
+}
+    </script>
+</body>
+</html>
