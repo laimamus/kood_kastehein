@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nalja API</title>
+    <style>
+
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-color: cornflowerblue;
+            display: grid;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Tere tulemast nalja APIsse!</h1>
+
+    <input id="apiUrl">
+
+    <button id="newJokeButton" onclick="getRandomJoke()">Genereeri uus nali</button>
+
+    <script>
+    function getJoke() {
+        const apiUrl = "https://v2.jokeapi.dev/joke/Any";
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Staatus: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.type === 'single') {
+                console.log(`Nali: ${data.joke}`);
+                } else if (data.type === 'twopart') {
+                    console.log(`Ülessättimine: ${data.setup}`);
+                    console.log(`Kohaletoimetus: ${data.delivery}`);
+                }
+            })
+            .catch(error => {
+                console.error(`Probleem nalja leidmisel: ${error.message}`);
+            });
+    }
+
+    getJoke();
+
+    </script>
+
+</body>
+</html>
