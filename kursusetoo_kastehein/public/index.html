@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h2 class="logo">Logo</h2>
+        <nav class="navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="profile.html">Profile</a>
+            <button class="btnLogin-popup">Login</button>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <span class="icon-close"></span>
+
+        <div class="form-box login">
+            <h2>Login</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"></span>
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+                <div class="input-box">
+                    <span class="icon"></span>
+                    <input type="password" id="password" placeholder="Password" required>
+                    </div>>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="login-register">
+                    <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <h2>Registration</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"></span>
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+                <div class="input-box">
+                    <span class="icon"></span>
+                    <input type="password" id="password" placeholder="Password" required>
+                    </div>>
+                </div>
+                <div class="input-box">
+                    <span class="icon"></span>
+                    <input type="text" id="firstname" placeholder="First name" required>
+                </div>
+                <div class="input-box">
+                    <span class="icon"></span>
+                    <input type="text" id="surname" placeholder="Surname" required>
+                </div>
+                <div class="input-box">
+                    <span class="icon"></span>
+                    <input type="text" id="age" placeholder="Age">
+                </div>
+                <div class="input-box">
+                    <span class="icon"></span>
+                    <select id="gender" name="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other/Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+
+        function validateGender() {
+            var selectedGender = document.getElementById("gender").value;
+
+            if (selectedGender === "") {
+                alert("Please select your gender.");
+                return false;
+            }
+
+            alert("Gender selected:" + selectedGender);
+            return true
+        }
+
+        function saveData() {
+            var username = document.getElementById("username").value;
+            var firstname = document.getElementById("firstname").value;
+            var surname = document.getElementById("surname").value;
+            var age = document.getElementById("age").value;
+            var gender = document.getElementById("gender").value;
+
+            localStorage.setItem("username", username);
+            localStorage.setItem("firstname", firstname);
+            localStorage.setItem("surname", surname);
+            localStorage.setItem("age", age);
+            localStorage.setItem("gender", gender);
+
+            window.location.href = "profile.html";
+        }
+
+    </script>
+
+</body>
+</html>

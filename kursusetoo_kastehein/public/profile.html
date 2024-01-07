@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>User Profile</h1>
+
+<div>
+    <strong>Username:</strong> <span id="profileUsername"></span>
+</div>
+
+<div>
+    <strong>First name</strong> <span id="profileFirstname"></span>
+</div>
+
+<div>
+    <strong>Surname</strong> <span id="profileSurname"></span>
+</div>
+
+<div>
+    <strong>Age</strong> <span id="profileAge"></span>
+</div>
+
+<div>
+    <strong>Gender</strong> <span id="profileGender"></span>
+</div>
+
+<script>
+    var storedUsername = localStorage.getItem("username");
+    var storedFirstname = localStorage.getItem("firstname");
+    var storedSurname = localStorage.getItem("surname");
+    var storedAge = localStorage.getItem("age");
+    var storedGender = localStorage.getItem("gender");
+
+    document.getElementById("profileUsername").innerText = storedUsername;
+    document.getElementById("profileFirstname").innerText = storedFirstname;
+    document.getElementById("profileSurname").innerText = storedSurname;
+    document.getElementById("profileAge").innerText = storedAge;
+    document.getElementById("profileGender").innerText = storedGender;
+</script>
+
+<h1>Feedback</h1>
+
+<input type="text" id="feedback" placeholder="Leave us some feedback!">
+<button id="addFeedback">Submit</button>
+
+<ul id="feedback"></ul>
+
+<script>
+    const feedbackInput = document.getElementById('feedback');
+
+    const addFeedbackButton = document.getElementById('addFeedback');
+    
+    const feedback = document.getElementById('feedback');
+
+    addFeedbackButton.addEventListener('click', function(){
+        const newFeedback = document.createElement('li');
+        newFeedback.textContent = feedbackInput.value;
+        feedback.appendChild(newFeedback);
+    })
+</script>
+
+</body>
+</html>
