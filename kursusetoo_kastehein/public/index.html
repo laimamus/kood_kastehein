@@ -6,10 +6,10 @@
     <title></title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body style="background-image: url(images/banner.jpg);">
 
     <header>
-        <h2 class="logo">Logo</h2>
+        <h2 class="logo">Mustard Service</h2>
         <nav class="navigation">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
@@ -20,7 +20,7 @@
     </header>
 
     <div class="wrapper">
-        <span class="icon-close"></span>
+        <span class="icon-close">X</span>
 
         <div class="form-box login">
             <h2>Login</h2>
@@ -32,9 +32,12 @@
                 <div class="input-box">
                     <span class="icon"></span>
                     <input type="password" id="password" placeholder="Password" required>
-                    </div>>
                 </div>
-                <button type="submit" class="btn">Login</button>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">
+                    Remember me</label>
+                </div>
+                <button type="submit" class="btn" onclick="saveData()">Login</button>
                 <div class="login-register">
                     <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
                 </div>
@@ -42,6 +45,7 @@
         </div>
 
         <div class="form-box register">
+            <span class="icon-close">X</span>
             <h2>Registration</h2>
             <form action="#">
                 <div class="input-box">
@@ -51,7 +55,6 @@
                 <div class="input-box">
                     <span class="icon"></span>
                     <input type="password" id="password" placeholder="Password" required>
-                    </div>>
                 </div>
                 <div class="input-box">
                     <span class="icon"></span>
@@ -63,21 +66,31 @@
                 </div>
                 <div class="input-box">
                     <span class="icon"></span>
-                    <input type="text" id="age" placeholder="Age">
+                    <input type="text" id="age" placeholder="Age" required>
                 </div>
                 <div class="input-box">
                     <span class="icon"></span>
                     <select id="gender" name="gender">
                         <option value="male">Male</option>
                         <option value="female">Female</option>
-                        <option value="other">Other/Prefer not to say</option>
+                        <option value="other">Other/Prefer not to say</option> required
                     </select>
                 </div>
-                <button type="submit" class="btn">Register</button>
-                
+                <div class="remember-forgot">
+                    <label><input type="checkbox">I agree to the terms and conditions</label>
+                </div>
+                <button type="submit" class="btn" onclick="saveData()">Register</button>
+                <div class="login-register">
+                    <p>Already have an account? <a href="#" class="login-link">Login</a></p>
+                </div>
             </form>
         </div>
+    </div>
 
+    <div class="beer">
+    <h2>Generate yourself a beer!</h2>
+    <button id="getBeerBtn" class="btn">Generate a new beer</button>
+    <p id="beerList"></p>
     </div>
 
     <script>
@@ -96,12 +109,12 @@
 
         function saveData() {
             var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
             var firstname = document.getElementById("firstname").value;
             var surname = document.getElementById("surname").value;
             var age = document.getElementById("age").value;
             var gender = document.getElementById("gender").value;
 
-            localStorage.setItem("username", username);
             localStorage.setItem("firstname", firstname);
             localStorage.setItem("surname", surname);
             localStorage.setItem("age", age);
@@ -109,6 +122,50 @@
 
             window.location.href = "profile.html";
         }
+
+        const wrapper = document.querySelector('.wrapper');
+        const loginLink = document.querySelector('.login-link');
+        const registerLink = document.querySelector('.register-link');
+        const btnPopup = document.querySelector('.btnLogin-popup');
+        const iconClose = document.querySelector('.icon-close');
+
+        registerLink.addEventListener('click', ()=> {
+            wrapper.classList.add('active');
+        })
+
+        loginLink.addEventListener('click', ()=> {
+            wrapper.classList.remove('active');
+        })
+
+        btnPopup.addEventListener('click', ()=> {
+            wrapper.classList.add('active-popup');
+        })
+
+        iconClose.addEventListener('click', ()=> {
+            wrapper.classList.remove('active-popup');
+        })
+
+        document.addEventListener('DOMContentLoaded', ()=> {
+            const getBeerBtn = document.getElementById('getBeerBtn');
+            const beerList = document.getElementById('beerList');
+        
+            getBeerBtn.addEventListener('click', ()=> {
+
+            const beerApiUrl = `https://api.punkapi.com/v2/beers/random`
+
+            fetch(beerApiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const beer = data[0];
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `Name: ${beer.name}, ABV: ${beer.abv}, Description: ${beer.description}`;
+                    beerList.appendChild(listItem);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:, error');
+                })
+            })
+        })          
 
     </script>
 

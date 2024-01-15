@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const port = 3002;
+const port = 3000;
 
 app.use(express.static('public'));
 
@@ -11,6 +11,14 @@ app.get('/', (req, res) => {
 
 app.get('/about', (req, res) => {
 	res.sendFile(__dirname + '/public/about.html');
+});
+
+app.get('/contact', (req, res) => {
+	res.sendFile(__dirname + '/contact/index.html');
+});
+
+app.get('/profile', (req, res) => {
+	res.sendFile(__dirname + '/profile/about.html');
 });
 
 app.listen(port, () => {

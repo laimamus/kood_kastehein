@@ -8,11 +8,18 @@
 </head>
 <body>
 
-<h1>User Profile</h1>
+    <header>
+        <h2 class="logo">Mustard Service</h2>
+        <nav class="navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+    </header>
 
-<div>
-    <strong>Username:</strong> <span id="profileUsername"></span>
-</div>
+<section class="profile">
+    <h1>User Profile</h1>
 
 <div>
     <strong>First name</strong> <span id="profileFirstname"></span>
@@ -30,40 +37,42 @@
     <strong>Gender</strong> <span id="profileGender"></span>
 </div>
 
+<div class="feedback">
+<h1>Feedback form</h1>
+
+<form id="feedbackForm">
+    <label for="feedback">Your Feedback:</label><br>
+    <textarea id="feedback" name="feedback" rows="4" cols="50" required></textarea>
+
+    <button type="button" class="btn" onclick="submitFeedback()">Submit Feedback</button>
+  </form>
+
+  <div id="feedback-container">
+    <h3>Thank you for your feedback!</h3>
+    <p id="displayedFeedback"></p>
+  </div>
+</div>
+
+</section>
+
 <script>
-    var storedUsername = localStorage.getItem("username");
     var storedFirstname = localStorage.getItem("firstname");
     var storedSurname = localStorage.getItem("surname");
     var storedAge = localStorage.getItem("age");
     var storedGender = localStorage.getItem("gender");
 
-    document.getElementById("profileUsername").innerText = storedUsername;
     document.getElementById("profileFirstname").innerText = storedFirstname;
     document.getElementById("profileSurname").innerText = storedSurname;
     document.getElementById("profileAge").innerText = storedAge;
     document.getElementById("profileGender").innerText = storedGender;
-</script>
 
-<h1>Feedback</h1>
+    function submitFeedback() {
+      var feedback = document.getElementById('feedback').value;
 
-<input type="text" id="feedback" placeholder="Leave us some feedback!">
-<button id="addFeedback">Submit</button>
-
-<ul id="feedback"></ul>
-
-<script>
-    const feedbackInput = document.getElementById('feedback');
-
-    const addFeedbackButton = document.getElementById('addFeedback');
+      document.getElementById('displayedFeedback').innerText = feedback;
+      document.getElementById('feedback-container').style.display = 'block';
+    }
     
-    const feedback = document.getElementById('feedback');
-
-    addFeedbackButton.addEventListener('click', function(){
-        const newFeedback = document.createElement('li');
-        newFeedback.textContent = feedbackInput.value;
-        feedback.appendChild(newFeedback);
-    })
 </script>
-
 </body>
 </html>
